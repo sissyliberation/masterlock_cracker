@@ -1,3 +1,5 @@
+from pprint import pprint
+
 def find_combinations():
 
 	# this is an example of your potential numbers, yours will vary
@@ -12,12 +14,11 @@ def find_combinations():
 	# array index of the unique mod-10 value in the potential numbers
 	last_num = int_numbers[last_digits.index(find_non_duplicate(last_digits))]
 
-	first_num, second_num, combinations = [], [], []
+	combinations = []
 
 	# generate all possible first and second number combinations
-	for i in range(10):
-		first_num.append(int((4 * i) + (last_num % 4)))
-		second_num.append(int((first_num[i] + 2) % 40))
+	first_num = [int((4*i) + (last_num % 4)) for i in range(10)]
+	second_num = [int((first_num[i] + 2) % 40) for i in range(10) ]
 
 	# spit out all 80 combinations
 	for i in range(10):
@@ -27,7 +28,7 @@ def find_combinations():
 				tmp = [first_num[i], second_num[j], last_num]
 				combinations.append(tmp)
 
-	# print(combinations)
+	pprint(combinations)
 
 def find_non_duplicate(array):
 	result = array[0]
